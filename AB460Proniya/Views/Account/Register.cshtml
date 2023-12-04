@@ -1,5 +1,10 @@
 ﻿@model RegisterVM
 
+
+@{
+    var genders = new List<string> {"Kisi","Qadin","Diger " };
+}
+
 <main class="main-content">
     <div class="breadcrumb-area breadcrumb-height"
          data-bg-image="assets/images/breadcrumb/bg/1-1-1919x388.jpg">
@@ -48,6 +53,23 @@
                                     <input asp-for="Email" placeholder="Email" />
                                     <span class="text-danger" asp-validation-for="Email"> </span>
                                 </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="Gender">Gender</label>
+                                    @foreach (var g in genders)
+                                    {
+                                        <div class="form-check">
+                                            <div class="d-flex">
+                                                <label asp-for="Gender" class="form-check-label"> @g </label>
+                                                <input asp-for="Gender" value="@g" type="radio">
+                                            </div>
+                                            <span class="text-danger" asp-validation-for="Gender"></span>
+                                        </div>
+                                    }
+
+                                </div>
+
+
                                 <div class="col-md-6">
                                     <label asp-for="Password"> Password</label>
                                     <input asp-for="Password" placeholder="Password" />

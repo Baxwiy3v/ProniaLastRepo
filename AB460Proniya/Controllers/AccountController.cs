@@ -27,6 +27,21 @@ namespace AB460Proniya.Controllers
 
             if (!ModelState.IsValid) return View();
 
+            uservm.Surname=uservm.Surname.Trim();
+
+            uservm.Name = uservm.Name.Trim();
+
+            string surname = Char
+                .ToUpper(uservm.Surname[0]) + uservm.Surname
+                .Substring(1)
+                .ToLower();
+
+            string name = Char
+                .ToUpper(uservm.Name[0]) + uservm.Name
+                .Substring(1)
+                .ToLower();
+          
+
 
             AppUser user = new AppUser
             { 
@@ -34,6 +49,7 @@ namespace AB460Proniya.Controllers
               Surname = uservm.Surname,
               UserName = uservm.UserName,
               Email = uservm.Email,
+              Gender=uservm.Gender
 
             
             };
@@ -52,6 +68,7 @@ namespace AB460Proniya.Controllers
                 return View();
             }
             await _signIn.SignInAsync(user, isPersistent: false);
+
             return RedirectToAction("Index","Home");
 
 

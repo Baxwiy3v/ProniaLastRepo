@@ -28,6 +28,7 @@ namespace AB460Proniya.ModelsVM
 		public string Email { get; set; }
 
 
+        public string Gender { get; set; }
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
