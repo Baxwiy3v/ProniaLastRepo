@@ -1,0 +1,46 @@
+﻿@model UpdateSlideVM
+<div class="content-wrapper">
+	<div class="row">
+		<div class="col-lg-12 grid-margin stretch-card">
+			<div class="card">
+				<div class="card-body">
+					<form class="forms-sample" method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<img src="~/assets/images/website-images/@Model.ImageUrl" width="150px" />
+							<input asp-for="ImageUrl" type="hidden" class="form-control">
+						</div>
+						<div class="form-group">
+							<label asp-for="Photo">Choose new photo</label>
+							<input asp-for="Photo" class="form-control" id="Photo" placeholder="Photo">
+							<span class="text-danger" asp-validation-for="Photo"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Title">Title</label>
+							<input asp-for="Title" class="form-control" id="Title" placeholder="Title">
+							<span class="text-danger" asp-validation-for="Title"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Subtitle">Subtitle</label>
+							<input asp-for="Subtitle" class="form-control" id="Subtitle" placeholder="Subtitle">
+							<span class="text-danger" asp-validation-for="Subtitle"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Order">Order</label>
+							<input asp-for="Order" class="form-control" id="Order" placeholder="Order">
+							<span class="text-danger" asp-validation-for="Order"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Description">Description</label>
+							<input asp-for="Description" class="form-control" id="name" placeholder="Description">
+							<span class="text-danger" asp-validation-for="Description"></span>
+						</div>
+
+						<button type="submit" class="btn btn-primary me-2">Submit</button>
+						<a asp-action="Index" class="btn btn-light">Cancel</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

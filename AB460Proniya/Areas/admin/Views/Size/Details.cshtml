@@ -1,0 +1,16 @@
+﻿@model Size
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        @foreach (ProductSize pSize in Model.ProductSizes)
+        {
+            <img src="~/assets/images/website-images/@pSize.Product.ProductImages.FirstOrDefault(p=>p.IsPrimary==true)?.Url" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@pSize.Product.Name</h5>
+
+                <p class="card-text">@pSize.Product.Description</p>
+            </div>
+            
+        }
+    </div>
+</div>
+

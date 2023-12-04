@@ -1,0 +1,31 @@
+﻿@model CreateCategoryVM
+<div class="content-wrapper">
+
+	<div class="row">
+
+
+		<div class="col-lg-12 grid-margin stretch-card">
+
+			<div class="card">
+
+				<div class="card-body">
+
+					<form class="forms-sample" method="post">
+
+						<div class="form-group">
+
+							<label for="name">Name</label>
+
+							<input asp-for="@Model.Name" type="text" class="form-control" id="name" placeholder="Name" name="name"> 
+							<span class="text-danger" asp-validation-for="Name" ></span>
+						</div>
+						
+						<button type="submit" class="btn btn-primary me-2">Submit</button>
+
+						<a asp-action="Index" class="btn btn-light">Cancel</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

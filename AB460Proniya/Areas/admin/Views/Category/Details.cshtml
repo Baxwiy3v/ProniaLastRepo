@@ -1,0 +1,20 @@
+﻿@model Category
+
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        @foreach (Product product in Model.Products)
+        {
+            <img src="~/assets/images/website-images/@product.ProductImages.FirstOrDefault(p=>p.IsPrimary==true)?.Url" class="card-img-top" alt="@product.Name">
+            <div class="card-body">
+                <h5 class="card-title"> @product.Name</h5>
+              
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span>Description:</span> @product.Description </li> 
+                <li class="list-group-item"><span>Price:</span> @product.Price </li>
+                <li class="list-group-item"><span>SKU:</span> @product.SKU</li>
+            </ul>
+            
+        }
+    </div>
+</div>

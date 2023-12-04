@@ -1,0 +1,53 @@
+﻿@model Product
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Product Details</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <div>
+                <img width="200px" src="~/assets/images/website-images/@Model.ProductImages.FirstOrDefault(p=>p.IsPrimary==true)?.Url">
+            </div>
+            <dt class="col-sm-3">Product ID:</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+
+            <dt class="col-sm-3">Product Name:</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">Description:</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
+
+            <dt class="col-sm-3">SKU:</dt>
+            <dd class="col-sm-9">@Model.SKU</dd>
+
+            <dt class="col-sm-3">Category:</dt>
+            <dd class="col-sm-9">@Model.Category.Name</dd>
+
+            <dt class="col-sm-3">Color:</dt>
+            <dd class="col-sm-9">
+                @foreach (Color color in Model.ProductColors.Select(pc => pc.Color))
+                {
+                    <span>@color.Name</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Size:</dt>
+            <dd class="col-sm-9">
+                @foreach (Size size in Model.ProductSizes.Select(ps => ps.Size))
+                {
+                    <span>@size.Name</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Tags:</dt>
+            <dd class="col-sm-9">
+                @foreach (Tag tag in Model.ProductTags.Select(pt => pt.Tag))
+                {
+                    <span>@tag.Name</span>
+                }
+            </dd>
+        </dl>
+    </div>
+   
+</div>
+

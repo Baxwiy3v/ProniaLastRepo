@@ -1,0 +1,15 @@
+﻿@model Slide
+<div class="card" style="width: 18rem;">
+    <div>
+        <img src="~/assets/images/website-images//@Model.ImageUrl" class="card-img" class="card-img-top" alt="...">
+    </div>
+    <div class="card-header">
+        @Model.Title
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Model.Subtitle</li>
+        <li class="list-group-item">@Model.Title</li>
+        <li class="list-group-item">@Model.Description</li>
+    </ul>
+</div>
+
