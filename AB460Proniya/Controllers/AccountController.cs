@@ -45,8 +45,8 @@ namespace AB460Proniya.Controllers
 
             AppUser user = new AppUser
             { 
-              Name = uservm.Name,
-              Surname = uservm.Surname,
+              Name = name,
+              Surname = surname,
               UserName = uservm.UserName,
               Email = uservm.Email,
               Gender=uservm.Gender
