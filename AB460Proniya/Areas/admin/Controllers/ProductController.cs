@@ -2,12 +2,14 @@
 using AB460Proniya.DAL;
 using AB460Proniya.Models;
 using AB460Proniya.Utilities.Extendions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AB460Proniya.Areas.admin.Controllers
 {
 	[Area("admin")]
+   
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
@@ -18,7 +20,7 @@ namespace AB460Proniya.Areas.admin.Controllers
             _context = context;
             _env = env;
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Index()
         {
             List<Product> products = await _context.Products
@@ -31,7 +33,7 @@ namespace AB460Proniya.Areas.admin.Controllers
 
             return View(products);
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Create()
         {
             var vm = new CreateProductVM
@@ -224,7 +226,7 @@ namespace AB460Proniya.Areas.admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Update(int id)
         {
             if (id <= 0) return BadRequest();
@@ -475,6 +477,7 @@ namespace AB460Proniya.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0) return BadRequest();
@@ -492,6 +495,7 @@ namespace AB460Proniya.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Details(int id)
         {
             if (id <= 0) return BadRequest();

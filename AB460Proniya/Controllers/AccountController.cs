@@ -1,6 +1,7 @@
 ﻿using AB460Proniya.DAL;
 using AB460Proniya.Models;
 using AB460Proniya.ModelsVM;
+using AB460Proniya.Utilities.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +11,13 @@ namespace AB460Proniya.Controllers
     {
         private readonly UserManager<AppUser> _manager;
         private readonly SignInManager<AppUser> _signIn;
+        private readonly RoleManager<IdentityRole> _role;
 
-        public AccountController(UserManager<AppUser> manager, SignInManager<AppUser> signIn)
+        public AccountController(UserManager<AppUser> manager, SignInManager<AppUser> signIn, RoleManager<IdentityRole> role)
         {
             _manager = manager;
             _signIn = signIn;
+            _role = role;
         }
         public IActionResult Register()
         {
@@ -67,6 +70,12 @@ namespace AB460Proniya.Controllers
 
                 return View();
             }
+
+
+           await _manager.AddToRoleAsync(user,UserRole.Member.ToString());
+
+
+
             await _signIn.SignInAsync(user, isPersistent: false);
 
             return RedirectToAction("Index", "Home");
@@ -92,7 +101,7 @@ namespace AB460Proniya.Controllers
 
             AppUser user = await _manager.FindByNameAsync(loginvm.UserOrEmail);
 
-            if(user == null)
+            if (user == null)
             {
 
                 user = await _manager.FindByEmailAsync(loginvm.UserOrEmail);
@@ -105,7 +114,7 @@ namespace AB460Proniya.Controllers
                 }
             }
 
-          var result = await _signIn.PasswordSignInAsync(user, loginvm.Password, loginvm.IsRemember, true);
+            var result = await _signIn.PasswordSignInAsync(user, loginvm.Password, loginvm.IsRemember, true);
 
             if (result.IsLockedOut)
             {
@@ -121,7 +130,6 @@ namespace AB460Proniya.Controllers
 
             }
 
-
             if (returnUrl is null)
             {
                 return RedirectToAction("Index", "Home");
@@ -130,6 +138,31 @@ namespace AB460Proniya.Controllers
 
         }
 
+
+        public async Task<IActionResult> CreateRoles()
+        {
+
+
+
+            foreach (UserRole role in Enum.GetValues(typeof(UserRole)))
+            {
+
+                if (!(await _role.RoleExistsAsync(role.ToString())))
+                 {
+                    await _role.CreateAsync(new IdentityRole
+                    {
+                        Name = role.ToString(),
+
+                    });
+                }
+
+                
+
+
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
 
 
 

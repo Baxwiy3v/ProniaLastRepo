@@ -1,6 +1,7 @@
 ﻿using AB460Proniya.Areas.ViewModels;
 using AB460Proniya.DAL;
 using AB460Proniya.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,7 @@ namespace AB460Proniya.Areas.ProniaAdmin.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Index()
         {
             List<Category> Categories = await _context.Categories
@@ -24,7 +25,7 @@ namespace AB460Proniya.Areas.ProniaAdmin.Controllers
 
             return View(Categories);
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult Create()
         {
             return View();
@@ -57,7 +58,7 @@ namespace AB460Proniya.Areas.ProniaAdmin.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Update(int id)
         {
             if (id <= 0) return BadRequest();
@@ -100,7 +101,7 @@ namespace AB460Proniya.Areas.ProniaAdmin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0) return BadRequest();
@@ -116,7 +117,7 @@ namespace AB460Proniya.Areas.ProniaAdmin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Details(int id)
         {
             if (id <= 0) return BadRequest();

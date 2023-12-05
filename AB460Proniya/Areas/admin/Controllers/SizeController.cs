@@ -1,6 +1,7 @@
 ﻿using AB460Proniya.Areas.ViewModels;
 using AB460Proniya.DAL;
 using AB460Proniya.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
@@ -17,6 +18,7 @@ namespace AB460Proniya.Areas.admin.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Index()
         {
             var size = await _context.Sizes
@@ -25,7 +27,7 @@ namespace AB460Proniya.Areas.admin.Controllers
 
             return View(size);
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult Create()
         {
             return View();
@@ -54,7 +56,7 @@ namespace AB460Proniya.Areas.admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Update(int id)
         {
             if (id <= 0) return BadRequest();
@@ -96,7 +98,7 @@ namespace AB460Proniya.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0) return BadRequest();
@@ -111,7 +113,7 @@ namespace AB460Proniya.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Details(int id)
         {
             if (id <= 0) return BadRequest();

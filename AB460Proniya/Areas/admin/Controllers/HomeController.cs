@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AB460Proniya.Areas.ProniaAdmin.Controllers
 {
@@ -7,6 +8,7 @@ namespace AB460Proniya.Areas.ProniaAdmin.Controllers
 
     public class HomeController : Controller
     {
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult Index()
         {
             return View();
