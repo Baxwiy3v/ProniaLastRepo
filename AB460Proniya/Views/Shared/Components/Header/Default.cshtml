@@ -97,7 +97,7 @@
                                     else
                                     {
                                         <li>
-                                            <a class="dropdown-item" asp-action="Register" asp-controller="Account">Login | Register</a>
+                                            <a class="dropdown-item" asp-action="Login" asp-controller="Account" asp-route-returnurl="@Context.Request.Path.Value">Login</a>
                                         </li>
                                     }
 
