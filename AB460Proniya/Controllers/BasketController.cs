@@ -303,6 +303,14 @@ namespace AB460Proniya.Controllers
 			
 
             return RedirectToAction(nameof(Index));
-        }
-    }
+      
+		
+		}
+
+		public IActionResult Checkout()
+		{
+			return View();
+		}
+
+	}
 }
