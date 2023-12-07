@@ -42,7 +42,9 @@
 
 									@foreach (BasketItemVM item in Model)
 									{
+
 										total += item.SubTotal;
+
 										<tr>
 											<td class="product_remove">
 
@@ -86,7 +88,7 @@
 															   type="text" />
 													</div>
 													<div style="margin-left:10px;">
-														<a asp-controller="basket" asp-action="addBasket" asp-route-id="@item.Id">
+														<a asp-controller="basket" asp-action="addbasket" asp-route-id="@item.Id">
 															<i class="fa fa-plus"></i>
 														</a>
 													</div>

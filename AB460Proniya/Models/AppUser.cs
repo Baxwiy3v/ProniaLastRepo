@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AB460Proniya.ModelsVM;
+using Microsoft.AspNetCore.Identity;
 
 namespace AB460Proniya.Models
 {
@@ -9,5 +10,7 @@ namespace AB460Proniya.Models
         public string Surname { get; set; }
 
         public string Gender { get; set; }
-    }
+
+		public List<BasketItem> BasketItems { get; set; }
+	}
 }

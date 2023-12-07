@@ -1,4 +1,5 @@
 ﻿using AB460Proniya.Models;
+using AB460Proniya.ModelsVM;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,9 +36,11 @@ namespace AB460Proniya.DAL
         public DbSet<ProductColor> ProductColors { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
+		public DbSet<BasketItem> BasketItems { get; set; }
+		public DbSet<Order> Orders { get; set; }
 
-      
-    }
+
+	}
 
 
 
