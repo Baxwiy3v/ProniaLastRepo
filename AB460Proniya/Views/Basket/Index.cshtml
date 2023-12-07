@@ -30,21 +30,25 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<th class="product_remove">remove</th>
-										<th class="product-thumbnail">images</th>
+										<th class="product_remove">Remove</th>
+										<th class="product-thumbnail">Images</th>
 										<th class="cart-product-name">Product</th>
-										<th class="product-price">Unit Price</th>
+										<th class="product-price"> Price</th>
 										<th class="product-quantity">Quantity</th>
 										<th class="product-subtotal">Total</th>
 									</tr>
 								</thead>
 								<tbody>
+
 									@foreach (BasketItemVM item in Model)
 									{
 										total += item.SubTotal;
 										<tr>
 											<td class="product_remove">
-												<a asp-action="RemoveBasket" asp-controller="Basket" asp-route-id="@item.Id">
+
+
+												<a asp-action="removeBasket" asp-controller="basket" asp-route-id="@item.Id">
+
 													<i class="pe-7s-close"
 													   data-tippy="Remove"
 													   data-tippy-inertia="true"
@@ -55,13 +59,16 @@
 												</a>
 											</td>
 											<td class="product-thumbnail">
-												<a asp-action="Detail" asp-controller="Detail" asp-route-id="@item.Id">
+												<a asp-action="detail" asp-controller="detail" asp-route-id="@item.Id">
+
 													<img style="width:150px; height:150px;" src="~/assets/images/website-images/@item.Image"
+
 														 alt="@item.Name" />
 												</a>
 											</td>
 											<td class="product-name">
-												<a asp-action="Detail" asp-controller="Detail" asp-route-id="@item.Id">@item.Name</a>
+
+												<a asp-action="detail" asp-controller="detail" asp-route-id="@item.Id">@item.Name</a>
 											</td>
 											<td class="product-price">
 												<span class="amount">$@item.Price</span>
@@ -69,7 +76,7 @@
 											<td class="quantity">
 												<div class="d-flex">
 													<div style="margin-right:10px;">
-														<a asp-action="Decrement" asp-controller="Basket" asp-route-id="@item.Id">
+														<a asp-action="decrement" asp-controller="basket" asp-route-id="@item.Id">
 															<i class="fa fa-minus"></i>
 														</a>
 
@@ -79,7 +86,7 @@
 															   type="text" />
 													</div>
 													<div style="margin-left:10px;">
-														<a asp-controller="Basket" asp-action="AddBasket" asp-route-id="@item.Id" asp-route-controllerName="Basket">
+														<a asp-controller="basket" asp-action="addBasket" asp-route-id="@item.Id">
 															<i class="fa fa-plus"></i>
 														</a>
 													</div>

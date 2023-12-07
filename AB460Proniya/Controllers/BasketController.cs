@@ -102,22 +102,23 @@ namespace AB460Proniya.Controllers
 
             Response.Cookies.Append("Basket", json);
 
-            return RedirectToAction(nameof(Index), "plus");
+            return RedirectToAction(nameof(Index), "Home");
         }
-        public async Task<IActionResult> MinusBasket(int id)
+        public async Task<IActionResult> Decrement(int id)
         {
             if (id <= 0) return BadRequest();
 
-            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            Product product = await _context.Products.
+                FirstOrDefaultAsync(p => p.Id == id);
 
             if (product is null) return NotFound();
-
             List<BasketCookieItemVM> basket;
             if (Request.Cookies["Basket"] is not null)
             {
-                basket = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(Request.Cookies["Basket"]);
-
-                BasketCookieItemVM item = basket.FirstOrDefault(b => b.Id == id);
+                basket = JsonConvert
+                    .DeserializeObject<List<BasketCookieItemVM>>(Request.Cookies["Basket"]);
+                var item = basket
+                    .FirstOrDefault(b => b.Id == id);
                 if (item is not null)
                 {
                     item.Count--;
@@ -135,7 +136,8 @@ namespace AB460Proniya.Controllers
         {
             if (id <= 0) return BadRequest();
 
-            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            Product product = await _context.Products
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product is null) return NotFound();
 
@@ -150,9 +152,11 @@ namespace AB460Proniya.Controllers
 
                 if (outcome is not null)
                 {
-                    basket.Remove(outcome);
+                    basket
+                        .Remove(outcome);
 
-                    string json = JsonConvert.SerializeObject(basket);
+                    string json = JsonConvert.
+                        SerializeObject(basket);
 
                     Response.Cookies.Append("Basket", json);
                 }

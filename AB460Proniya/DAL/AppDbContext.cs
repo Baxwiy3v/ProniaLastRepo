@@ -1,10 +1,7 @@
 ﻿using AB460Proniya.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
-using Color = AB460Proniya.Models.Color;
-using Size = AB460Proniya.Models.Size;
+
 
 namespace AB460Proniya.DAL
 {
