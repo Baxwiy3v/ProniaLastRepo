@@ -187,25 +187,26 @@
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
 					<li class="nav-item">
-						<a class="nav-link" href="index.html">
+						@* <a class="nav-link" href="index.html">
 							<i class="mdi mdi-home menu-icon"></i>
 							<span class="menu-title">Dashboard</span>
-						</a>
+						</a> *@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
 							<i class="mdi mdi-circle-outline menu-icon"></i>
-							<span class="menu-title">Aqil Baxshyev</span>
+							<span class="menu-title mdi mdi-home">Pronia</span>
 							<i class="menu-arrow"></i>
 						</a>
 						<div class="collapse" id="ui-basic">
 							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"> <a class="nav-link" asp-controller="Category" asp-action="Index">Categories</a></li>
-								<li class="nav-item"> <a class="nav-link" asp-controller="Slide" asp-action="Index">Slides</a></li>
-								<li class="nav-item"> <a class="nav-link" asp-controller="Tag" asp-action="Index">Tags</a></li>
-								<li class="nav-item"> <a class="nav-link" asp-controller="Color" asp-action="Index">Colors</a></li>
-								<li class="nav-item"> <a class="nav-link" asp-controller="Size" asp-action="Index">Sizes</a></li>
-								<li class="nav-item"> <a class="nav-link" asp-controller="Product" asp-action="Index">Products</a></li>
+								<li> <a class="nav-link  mdi mdi-candycanemdi mdi-candycane" asp-controller="Product" asp-action="Index">Products</a></li>
+								<li> <a class="nav-link  mdi mdi-playlist-check" asp-controller="Category" asp-action="Index">Categories</a></li>
+								<li> <a class="nav-link  mdi mdi-checkbox-multiple-marked-outline" asp-controller="Slide" asp-action="Index">Slides</a></li>
+								<li> <a class="nav-link  mdi mdi-code-tags " asp-controller="Tag" asp-action="Index"> Tags</a></li>
+								<li> <a class="nav-link mdi mdi-format-color-fill " asp-controller="Color" asp-action="Index"> Colors</a></li>
+								<li> <a class="nav-link  mdi mdi-move-resize " asp-controller="Size" asp-action="Index"> Sizes</a></li>
+								
 								
 							</ul>
 						</div>

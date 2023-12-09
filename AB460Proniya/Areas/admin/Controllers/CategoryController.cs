@@ -1,4 +1,5 @@
-﻿using AB460Proniya.Areas.ViewModels;
+﻿
+using AB460Proniya.Areas.ViewModels;
 using AB460Proniya.DAL;
 using AB460Proniya.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -102,21 +103,29 @@ namespace AB460Proniya.Areas.ProniaAdmin.Controllers
             return RedirectToAction(nameof(Index));
         }
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int id)
+
+        public async Task<IActionResult> Delete(int id, bool confirim)
         {
             if (id <= 0) return BadRequest();
 
-            var existed = await _context.Categories
-                .FirstOrDefaultAsync(c => c.Id == id);
+            var existed = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
 
             if (existed is null) return NotFound();
 
-
-            _context.Categories.Remove(existed);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
+            if (confirim)
+            {
+                
+                _context.Categories.Remove(existed);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+              
+                return View(existed);
+            }
         }
+
         [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Details(int id)
         {

@@ -99,7 +99,7 @@ namespace AB460Proniya.Areas.admin.Controllers
             return RedirectToAction(nameof(Index));
         }
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id,bool confirim)
         {
             if (id <= 0) return BadRequest();
 
@@ -108,10 +108,18 @@ namespace AB460Proniya.Areas.admin.Controllers
 
             if (existed is null) return NotFound();
 
-            _context.Sizes.Remove(existed);
+            if (confirim)
+            {
+                _context.Sizes.Remove(existed);
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(existed);
+            }
+            
         }
         [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Details(int id)

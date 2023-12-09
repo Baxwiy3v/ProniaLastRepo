@@ -1,0 +1,12 @@
+﻿@model Tag
+<form asp-action="Delete" asp-controller="Tag" class="form-inline">
+
+    <p>Buuu tagi silmək istədiyinizə əminsiniz?</p>
+
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="hidden" name="confirim" value="true" />
+    <input type="submit" value="Yes" class="form-control btn btn-success" />
+    <a asp-action="Index" asp-controller="tag" class="form-control btn btn-danger">No</a>
+</form>
+
+

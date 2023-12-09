@@ -1,0 +1,12 @@
+﻿@model Product
+<form asp-action="Delete" asp-controller="Product" class="form-inline">
+
+    <p>Buuu məhsulu silmək istədiyinizə əminsiniz?</p>
+
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="hidden" name="confirim" value="true" />
+    <input type="submit" value="Yes" class="form-control btn btn-success" />
+    <a asp-action="Index" asp-controller="Product" class="form-control btn btn-danger">No</a>
+</form>
+
+

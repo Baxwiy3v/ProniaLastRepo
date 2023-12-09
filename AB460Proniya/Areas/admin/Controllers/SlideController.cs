@@ -157,7 +157,7 @@ namespace AB460Proniya.Areas.admin.Controllers
             return RedirectToAction(nameof(Index));
         }
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id,bool confirim)
         {
             if (id <= 0) return BadRequest();
 
@@ -166,13 +166,22 @@ namespace AB460Proniya.Areas.admin.Controllers
 
             if (slide == null) return NotFound();
 
-            slide.ImageUrl.DeleteFile(_env.WebRootPath, "assets", "images", "website-images");
+            if (confirim)
+            {
+                slide.ImageUrl.DeleteFile(_env.WebRootPath, "assets", "images", "website-images");
 
-            _context.Slides.Remove(slide);
+                _context.Slides.Remove(slide);
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
+
+            }
+            else
+            {
+                return View(slide);
+            }
+           
         }
         [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Details(int id)

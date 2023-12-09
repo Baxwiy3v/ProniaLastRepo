@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AB460Proniya.Areas.admin.Controllers
 {
-	[Area("admin")]
-   
+    [Area("admin")]
+
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
@@ -417,7 +417,7 @@ namespace AB460Proniya.Areas.admin.Controllers
                 });
             }
 
-           
+
 
             existed.ProductColors.RemoveAll(pc => !productVM.ColorIds.Exists(cId => cId == pc.ColorId));
 
@@ -441,11 +441,11 @@ namespace AB460Proniya.Areas.admin.Controllers
                 });
             }
 
-            
+
 
             existed.ProductSizes.RemoveAll(pt => !productVM.SizeIds.Exists(sId => sId == pt.SizeId));
 
-            
+
 
             List<int> sizeCreatable = productVM.SizeIds.Where(sId => !existed.ProductSizes.Exists(ps => ps.SizeId == sId)).ToList();
 
@@ -478,7 +478,7 @@ namespace AB460Proniya.Areas.admin.Controllers
             return RedirectToAction(nameof(Index));
         }
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, bool confirim)
         {
             if (id <= 0) return BadRequest();
 
@@ -486,14 +486,24 @@ namespace AB460Proniya.Areas.admin.Controllers
 
             if (product is null) return NotFound();
 
-            foreach (ProductImage image in product.ProductImages)
-            {
-                image.Url.DeleteFile(_env.WebRootPath, "assets", "images", "website-images");
-            };
 
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (confirim)
+            {
+                foreach (ProductImage image in product.ProductImages)
+                {
+                    image.Url.DeleteFile(_env.WebRootPath, "assets", "images", "website-images");
+                };
+
+                _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(product);
+            }
+
+
         }
         [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Details(int id)

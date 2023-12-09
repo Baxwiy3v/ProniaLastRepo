@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Tags</h4>
-                    <a class="btn btn-success btn-info" asp-controller="Tag" asp-action="Create">Create Tag</a>
+                    <a class="btn btn-inverse-success btn-fw" asp-controller="Tag" asp-action="Create">Create Tag</a>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -42,9 +42,9 @@
                                             @tag.ProductTags.Count
                                         </td>
                                         <td>
-                                            <a asp-action="Update" asp-route-id="@tag.Id" class="btn btn-warning btn-info"> <i class="mdi mdi-pencil"></i> Update</a>
-                                            <a asp-action="Delete" asp-route-id="@tag.Id" class="btn btn-danger btn-info"> <i class="mdi mdi-delete"></i> Delete</a>
-                                            <a asp-action="Details" asp-route-id="@tag.Id" class="btn btn-primary btn-info"> <i class="mdi mdi-open-in-new"></i> Details</a>
+                                            <a asp-action="Update" asp-route-id="@tag.Id" class="btn btn-inverse-warning btn-fw"> <i class="mdi mdi-pencil"></i> Update</a>
+                                            <a asp-action="Delete" asp-route-id="@tag.Id" class="btn btn-inverse-danger btn-fw"> <i class="mdi mdi-delete"></i> Delete</a>
+                                            <a asp-action="Details" asp-route-id="@tag.Id" class="btn btn-inverse-primary btn-fw"> <i class="mdi mdi-open-in-new"></i> Details</a>
                                         </td>
                                     </tr>
 
