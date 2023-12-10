@@ -11,6 +11,8 @@ namespace AB460Proniya.Models
 
         public string Gender { get; set; }
 
-		public List<BasketItem> BasketItems { get; set; }
+
+        public List<Order> Orders { get; set; }
+        public List<BasketItem> BasketItems { get; set; }
 	}
 }

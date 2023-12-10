@@ -588,7 +588,7 @@ namespace AB460Proniya.Migrations
             modelBuilder.Entity("AB460Proniya.Models.Order", b =>
                 {
                     b.HasOne("AB460Proniya.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -729,6 +729,8 @@ namespace AB460Proniya.Migrations
             modelBuilder.Entity("AB460Proniya.Models.AppUser", b =>
                 {
                     b.Navigation("BasketItems");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("AB460Proniya.Models.Category", b =>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "S9xyvu51DxCQS6SlaqE/Lz+dwCILY11l4GZwsMbgfVLZAGSQsnIfaOp1d/LY54NGgN+p+ghidPkioNYUJAQOHg==",
+  "dgSpecHash": "y/fpXbRHyoKDytkyLq1OhEmlU1250l1CB0iD1M+wgMtKD6+sIDvVDk3WV87mG91i37murnZktJcTCOBj9v/AbA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Asus\\Desktop\\AqilPronia\\AB460Proniya\\AB460Proniya.csproj",
+  "projectFilePath": "C:\\Users\\Asus\\Desktop\\ProniaLastRepo\\AB460Proniya\\AB460Proniya.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
