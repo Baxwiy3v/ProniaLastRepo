@@ -1,5 +1,6 @@
 using AB460Proniya.DAL;
 using AB460Proniya.Interfaces;
+using AB460Proniya.Middlewares;
 using AB460Proniya.Models;
 using AB460Proniya.Services;
 using AB460Proniya.ViewComponents;
@@ -47,7 +48,7 @@ app.UseAuthorization();
 
 
 app.UseStaticFiles();
-
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 app.MapControllerRoute(
     "default",
     "{area:exists}/{controller=home}/{action=index}/{id?}"

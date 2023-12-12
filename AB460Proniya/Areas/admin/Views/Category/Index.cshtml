@@ -1,62 +1,79 @@
 ﻿
-@model List<Category>
+@model PaginationVM<Category>
 @{
-    int count = 0;
+
+	int count = Model.CurrentPage * 2;
 }
 <div class="main-panel">
-    <div class="content-wrapper">
-        <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Categories</h4>
-                    <a class="btn btn-inverse-success btn-fw" asp-controller="Category" asp-action="Create">Create Category</a>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        No
-                                    </th>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Products Count
-                                    </th>
-                                    <th>
-                                        Settings
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (Category category in Model)
-                                {
-                                    count++;
-                                    <tr>
-                                        <td >
-                                           @count
-                                        </td>
-                                        <td>
-                                           @category.Name
-                                        </td>
-                                       <td>
-                                           @category.Products.Count
-                                        </td>
-                                        <td>
-                                            <a asp-action="Update" asp-route-id="@category.Id" class="btn btn-inverse-warning btn-fw"> <i class="mdi mdi-pencil"></i> Update</a>
-                                            <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-inverse-danger btn-fw"> <i class="mdi mdi-delete"></i> Delete</a>
-                                            <a asp-action="Details" asp-route-id="@category.Id" class="btn btn-inverse-primary btn-fw"> <i class="mdi mdi-open-in-new"></i> Details</a>
-                                        </td>
-                                    </tr>
+	<div class="content-wrapper">
+		<div class="col-lg-12 grid-margin stretch-card">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Categories</h4>
+					<a class="btn btn-inverse-success btn-fw" asp-controller="Category" asp-action="Create">Create Category</a>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>
+										No
+									</th>
+									<th>
+										Name
+									</th>
+									<th>
+										Products Count
+									</th>
+									<th>
+										Settings
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (Category category in Model.Items)
+								{
+									count++;
+									<tr>
+										<td>
+											@count
+										</td>
+										<td>
+											@category.Name
+										</td>
+										<td>
+											@category.Products.Count
+										</td>
+										<td>
+											<a asp-action="Update" asp-route-id="@category.Id" class="btn btn-inverse-warning btn-fw"> <i class="mdi mdi-pencil"></i> Update</a>
+											<a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-inverse-danger btn-fw"> <i class="mdi mdi-delete"></i> Delete</a>
+											<a asp-action="Details" asp-route-id="@category.Id" class="btn btn-inverse-primary btn-fw"> <i class="mdi mdi-open-in-new"></i> Details</a>
+										</td>
+									</tr>
 
 
-                                }
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+								}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+
+						<li class="page-item @(Model.CurrentPage==0?"disabled":"")"><a class="page-link" asp-route-page="@(Model.CurrentPage-1)" asp-action="Index" asp-controller="Category">Previous</a></li>
+						@for (int i = 0; i < Model.TotalPage; i++)
+
+						{
+							<li class="page-item @(i==Model.CurrentPage?"disabled":"")"><a class="page-link" asp-route-page="@(i)" asp-action="Index" asp-controller="Category">@(i + 1)</a></li>
+						}
+
+						<li class="page-item @(Model.CurrentPage==Model.TotalPage-1?"disabled":"")"><a class="page-link" asp-route-page="@(Model.CurrentPage+1)" asp-action="Index" asp-controller="Category">Next</a></li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
 </div>

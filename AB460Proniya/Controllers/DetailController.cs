@@ -1,6 +1,7 @@
 ﻿using AB460Proniya.DAL;
 using AB460Proniya.Models;
 using AB460Proniya.ModelsVM;
+using AB460Proniya.Utilities.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,7 @@ namespace AB460Proniya.Controllers
 
 		public async Task<IActionResult> Detail(int id)
 		{
-            if (id <= 0) return BadRequest();
+            if (id <= 0) throw new WrongRequestException("Your request is wrong");
 
             Product product = await _context.Products
 
@@ -32,9 +33,10 @@ namespace AB460Proniya.Controllers
                 .ThenInclude(p => p.Color)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
-            if (product == null) return NotFound();
+            if (product is null) throw new NotFoundException("There is no such product");
 
-            List<Product> RelatedProducts = await _context.Products
+
+            List <Product> RelatedProducts = await _context.Products
                 .Include(pi => pi.ProductImages
                 .Where(pi => pi.IsPrimary != null))
                 .Where(p => p.CategoryId == product.CategoryId && p.Id != product.Id)

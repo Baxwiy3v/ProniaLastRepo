@@ -43,5 +43,10 @@ namespace AB460Proniya.Controllers
         {
             return View();
         }
+
+        public IActionResult ErrorPage(string error)
+        {
+            return View(model: error);
+        }
     }
 }

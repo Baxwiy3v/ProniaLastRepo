@@ -1,4 +1,5 @@
-﻿using AB460Proniya.Areas.ViewModels;
+﻿using AB460Proniya.Areas.admin.ViewModels;
+using AB460Proniya.Areas.ViewModels;
 using AB460Proniya.DAL;
 using AB460Proniya.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -17,13 +18,23 @@ namespace AB460Proniya.Areas.ProniaAdmin.Controllers
             _context = context;
         }
         [Authorize(Roles = "Admin,Moderator")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page)
         {
-            var Tags = await _context.Tags.
-                Include(t => t.ProductTags)
-                .ToListAsync();
+            double count = await _context.Tags.CountAsync();
 
-            return View(Tags);
+            var Tags = await _context.Tags.Skip(page * 2).Take(2)
+
+                .Include(t => t.ProductTags).ToListAsync();
+
+            PaginationVM<Tag> pagination = new PaginationVM<Tag>()
+            {
+                CurrentPage = page,
+
+                TotalPage = Math.Ceiling(count / 2),
+
+                Items = Tags
+            };
+            return View(pagination);
         }
         [Authorize(Roles = "Admin,Moderator")]
         public IActionResult Create()
